@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+ul.reset,
+ul.reset li,
+ul.reset ul li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: 0;
+}
+
+* {
+  font-family: 'Kanit', sans-serif;
+}
+:root {
+  --palette-primary: #ee7033;
+  --palette-secondary: #0c8397;
+  --palette-text-primary: #000000;
+  --palette-text-secondary: #cacaca;
+  --palette-border: #cccccc;
+  --palette-green: #12a580;
+  --palette-pink: #d51271;
+  --palette-red: #c12020;
+  --palette-dark-yellow: #c89616;
+  --palette-orange: #e25a2c;
+  --palette-blue: #1180aa;
+  --palette-yellow: #fbbb1b;
+}

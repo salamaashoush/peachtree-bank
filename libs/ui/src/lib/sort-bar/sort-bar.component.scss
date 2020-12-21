@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  display: flex;
+  align-items: center;
+}
+h3 {
+}
+.sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  border: 1px solid gray;
+  &__item {
+    border: none;
+    border-radius: 0;
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+    padding: 10px 25px;
+    background: none;
+    &:not(:last-child) {
+      border-right: 1px solid gray;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
