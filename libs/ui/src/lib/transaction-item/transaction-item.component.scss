@@ -23,7 +23,7 @@
   background: var(--beneficiary-logo);
   background-size: contain;
   filter: grayscale(100%);
-  margin-left: 30px;
+  margin-left: 10px;
   margin-right: 30px;
   width: 40px;
   height: 40px;
@@ -36,4 +36,14 @@ p {
 
 strong {
   font-weight: 500;
+}
+
+.date {
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
 }

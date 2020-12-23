@@ -1,10 +1,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-height: 200px;
-  min-width: 200px;
-  width: var(--panel-w, auto);
-  height: var(--panel-h, auto);
+  width: var(--panel-w, 100%);
+  height: var(--panel-h, 100%);
   background: var(--panel-bg, white);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }

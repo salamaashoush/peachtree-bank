@@ -32,13 +32,58 @@ main {
   padding-top: 70px;
 }
 
-backbase-panel:first-child {
+.transfer-form-panel {
   margin-right: 30px;
-}
-backbase-search-box {
-  margin-right: 10px;
+  --panel-h: 400px;
+  --panel-w: 300px;
+  --panel-header-h: 40px;
+  --panel-header-px: 15px;
+  --panel-header-py: 12px;
 }
 
 .toolbar {
-  padding-bottom: 30px;
+  margin-bottom: 10px;
+  backbase-search-box {
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile: */
+  header {
+    & .logo {
+      width: 25%;
+      margin: 0 auto;
+    }
+  }
+
+  .container {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+    margin: 10px;
+  }
+
+  .transfer-form-panel {
+    margin: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 1367px) {
+  .toolbar {
+    flex-direction: column;
+    margin-bottom: 0px;
+    backbase-search-box {
+      margin-right: 0px;
+    }
+    backbase-search-box,
+    backbase-sort-bar {
+      margin-bottom: 15px;
+      width: 100%;
+    }
+  }
 }

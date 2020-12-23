@@ -4,6 +4,7 @@
 }
 
 .sort-bar {
+  width: 100%;
   &-label {
     font-weight: 400;
     margin: 0;
@@ -16,7 +17,7 @@
     border: none;
     border-radius: 0;
     text-transform: uppercase;
-    padding: 10px 25px;
+    padding: 0.6em 1.2em;
     background: none;
     &:not(:last-child) {
       border-right: 1px solid gray;
@@ -28,5 +29,11 @@
       display: block;
       margin-right: 5px;
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sort-bar-label {
+    display: none;
   }
 }
