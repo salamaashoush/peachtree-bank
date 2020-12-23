@@ -1,3 +1,3 @@
-export * from './lib/data.module';
+export * from './lib/api-client.module';
 export * from './lib/transaction';
 export * from './lib/types';

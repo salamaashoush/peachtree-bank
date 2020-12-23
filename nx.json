@@ -41,6 +41,9 @@
     },
     "data": {
       "tags": ["data"]
+    },
+    "api-client": {
+      "tags": ["api"]
     }
   }
 }

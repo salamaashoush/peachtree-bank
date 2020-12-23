@@ -1,3 +1,39 @@
 :host {
-  display: block;
+  display: flex;
+  min-height: 70px;
+  width: 100%;
+  &:last-child .content {
+    border-bottom: 2px solid var(--palette-border);
+  }
+  background: white;
+}
+
+.category {
+  width: 10px;
+  background: var(--category-color, var(--palette-border));
+}
+
+.content {
+  padding: 15px 20px;
+  border-right: 2px solid var(--palette-border);
+  border-top: 2px solid var(--palette-border);
+}
+
+.logo {
+  background: var(--beneficiary-logo);
+  background-size: contain;
+  filter: grayscale(100%);
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+p {
+  margin: 0;
+  font-weight: 300;
+}
+
+strong {
+  font-weight: 500;
 }

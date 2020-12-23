@@ -1,1 +1,2 @@
-<p>search-box works!</p>
+<input type="text" id="search-box" placeholder="Search by typing" [formControl]="searchControl">
+<button class="clear" *ngIf="searchControl.value">x</button>

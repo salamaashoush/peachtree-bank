@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { IOrderBy } from '@backbase/data';
 import { ISortBarItem } from '../types';
 
 @Component({
@@ -17,4 +24,17 @@ export class SortBarComponent {
     { label: 'Beneficiary', value: 'beneficiary' },
     { label: 'Amount', value: 'amount' },
   ];
+  @Input() activeSort: IOrderBy = {
+    key: 'date',
+    order: 'asc',
+  };
+  @Output() sortChange = new EventEmitter<IOrderBy>(true);
+
+  handleSortChange(key: string) {
+    if (this.activeSort.key === key) {
+      this.activeSort.order = this.activeSort.order === 'asc' ? 'desc' : 'asc';
+    }
+    this.activeSort.key = key;
+    this.sortChange.emit(this.activeSort);
+  }
 }
