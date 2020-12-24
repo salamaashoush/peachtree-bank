@@ -5,3 +5,5 @@ export interface IApiClientConfig {
 export interface IApiResponse<T> {
   data: T;
 }
+
+export type CurrencyCode = 'EUR' | 'USD';

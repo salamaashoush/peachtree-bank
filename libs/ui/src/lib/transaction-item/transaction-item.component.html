@@ -1,11 +1,15 @@
 <div class="category"></div>
-<div class="content w-full flex justify-start items-center flex-1" style="--beneficiary-logo:url({{transaction.beneficiaryLogo}})">
-  <p [title]="transaction.fullDate" class="date">{{transaction?.dateFormatted}}</p>
+<div
+  class="content w-full flex justify-start items-center flex-1"
+  style="--beneficiary-logo:url({{ transaction.beneficiaryLogo }})"
+>
+  <p [title]="transaction.fullDate" class="date">
+    {{ transaction?.dateFormatted }}
+  </p>
   <div class="logo"></div>
   <div class="flex flex-col flex-1">
-    <strong>{{transaction?.beneficiary}}</strong>
-    <p>{{transaction?.type}}</p>
+    <strong>{{ transaction?.beneficiary }}</strong>
+    <p>{{ transaction?.type }}</p>
   </div>
-  <strong class="text-align-right">{{transaction?.amountFormatted}}</strong>
+  <strong class="text-align-right">{{ transaction?.amountFormatted }}</strong>
 </div>
-

@@ -26,7 +26,7 @@ export class SortBarComponent {
   ];
   @Input() activeSort: IOrderBy = {
     key: 'date',
-    order: 'asc',
+    order: 'desc',
   };
   @Output() sortChange = new EventEmitter<IOrderBy>(true);
 

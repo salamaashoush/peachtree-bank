@@ -1,21 +1,60 @@
 <header class="w-full flex items-center">
-  <img src="/assets/logo.jpg" alt="peach tree logo" class="logo w-1/4">
+  <img src="/assets/logo.jpg" alt="peach tree logo" class="logo w-1/4" />
 </header>
 <main class="w-full h-full flex items-start justify-center">
   <div class="container flex justify-start">
-    <backbase-panel title="Make a Transfer" icon="/assets/icons/arrows.png" class="transfer-form-panel">
-      form
+    <backbase-panel
+      [loading]=""
+      title="Make a Transfer"
+      icon="/assets/icons/arrows.png"
+      class="transfer-form-panel"
+    >
+      <backbase-loader
+        *ngIf="isLoading$ | async; else transferForm"
+      ></backbase-loader>
+      <ng-template #transferForm>
+        <backbase-transfer-form
+          [merchantNames]="merchantNames$ | async"
+          [account]="accountService.account$ | async"
+          (formSubmit)="handleTransferFormSubmit($event)"
+        ></backbase-transfer-form>
+      </ng-template>
     </backbase-panel>
-    <backbase-panel title="Recent Transactions" class="flex-1" icon="/assets/icons/briefcase.png" style="--panel-h:750px">
-      <div class="flex flex-col h-full overflow-auto">
-        <div class="toolbar flex items-end justify-between">
-          <backbase-search-box class="w-1/2" (searchChange)="handleSearch($event)"></backbase-search-box>
-          <backbase-sort-bar class="w-1/2" [activeSort]="transactionsDataService.activeSort$ | async"  (sortChange)="handleSort($event)"></backbase-sort-bar>
+    <backbase-panel
+      title="Recent Transactions"
+      class="flex-1"
+      icon="/assets/icons/briefcase.png"
+      style="--panel-h: 750px"
+    >
+      <backbase-loader
+        *ngIf="isLoading$ | async; else recentTransactions"
+      ></backbase-loader>
+      <ng-template #recentTransactions>
+        <div class="flex flex-col h-full overflow-auto">
+          <div class="toolbar flex items-end justify-between">
+            <backbase-search-box
+              class="w-1/2"
+              (searchChange)="handleSearch($event)"
+            ></backbase-search-box>
+            <backbase-sort-bar
+              class="w-1/2"
+              [activeSort]="transactionService.activeSort$ | async"
+              (sortChange)="handleSort($event)"
+            ></backbase-sort-bar>
+          </div>
+          <div
+            class="flex flex-col justify-start items-center transactions-list overflow-auto"
+          >
+            <backbase-transaction-item
+              *ngFor="
+                let transaction of transactionService.transaction$ | async
+              "
+              [transaction]="transaction"
+              style="--category-color:{{ transaction.categoryCode }}"
+            ></backbase-transaction-item>
+          </div>
         </div>
-        <div class="flex flex-col justify-start items-center transactions-list overflow-auto">
-          <backbase-transaction-item *ngFor="let transaction of transactionsDataService.transaction$ | async" [transaction]="transaction" style="--category-color:{{transaction.categoryCode}}"></backbase-transaction-item>
-        </div>
-      </div>
+      </ng-template>
     </backbase-panel>
   </div>
 </main>

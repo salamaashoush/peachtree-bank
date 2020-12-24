@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './loader/loader.component';
 import { PanelComponent } from './panel/panel.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
@@ -15,12 +16,14 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
     TransactionItemComponent,
     PanelComponent,
     TransferFormComponent,
+    LoaderComponent,
   ],
   exports: [
     SortBarComponent,
     SearchBoxComponent,
     TransactionItemComponent,
     PanelComponent,
+    LoaderComponent,
     TransferFormComponent,
   ],
 })

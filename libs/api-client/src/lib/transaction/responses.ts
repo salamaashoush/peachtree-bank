@@ -1,8 +1,11 @@
+import { IMerchant } from '../merchant';
+import { CurrencyCode } from '../types';
+
 export interface ITransactionItem {
   categoryCode: string;
   dates: ITransactionDates;
   transaction: ITransaction;
-  merchant: ITransactionMerchant;
+  merchant: IMerchant;
 }
 
 export interface ITransactionDates {
@@ -20,10 +23,4 @@ export interface ITransactionAmount {
   currencyCode: CurrencyCode;
 }
 
-export interface ITransactionMerchant {
-  name: string;
-  accountNumber: string;
-}
-
-export type CurrencyCode = 'EUR' | 'USD';
 export type CreditDebitIndicator = 'CRDT' | 'DBIT';

@@ -1,1 +1,44 @@
-<p>transfer-form works!</p>
+<form [formGroup]="transferForm">
+  <div class="form-control">
+    <label for="fromAccount">From Account</label>
+    <input type="text" formControlName="fromAccount" id="fromAccount" />
+  </div>
+
+  <div class="form-control">
+    <label for="toAccount">To Account</label>
+    <input
+      placeholder="Select or type account"
+      type="text"
+      formControlName="toAccount"
+      id="toAccount"
+      list="account-list"
+    />
+  </div>
+
+  <div class="form-control">
+    <label for="amount">Amount</label>
+    <div class="flex items-center">
+      <span class="prefix">{{ currencySymbol }}</span>
+      <input
+        class="flex-1"
+        placeholder="0.00"
+        type="number"
+        formControlName="amount"
+        id="amount"
+      />
+    </div>
+  </div>
+
+  <datalist id="account-list">
+    <option *ngFor="let account of merchantNames" [value]="account"></option>
+  </datalist>
+  <div class="w-full flex items-center justify-end">
+    <button
+      type="submit"
+      [disabled]="!transferForm.valid"
+      (click)="handleFormSubmit()"
+    >
+      Submit
+    </button>
+  </div>
+</form>

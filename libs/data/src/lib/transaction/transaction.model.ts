@@ -34,7 +34,14 @@ export class Transaction {
     this.beneficiaryLogo = `/assets/icons/${kebabCase(this.beneficiary)}.png`;
   }
 
-  includes(search: string) {
+  /**
+   * check if the `beneficiary` or `type` includes the search keyword
+   *
+   * @param {string} search
+   * @returns {boolean}
+   * @memberof Transaction
+   */
+  includes(search: string): boolean {
     if (search) {
       return `${this.beneficiary}${this.type}`
         .toLowerCase()

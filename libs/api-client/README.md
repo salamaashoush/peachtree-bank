@@ -1,7 +1,7 @@
 # api-client
 
-This library was generated with [Nx](https://nx.dev).
+This library contains all api related code it is responsible for
 
-## Running unit tests
-
-Run `nx test api-client` to execute the unit tests.
+- Create requests for api calls.
+- Create required headers.
+- Fetch all data from api services.

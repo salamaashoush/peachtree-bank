@@ -1,7 +1,17 @@
-<h3 class="sort-bar-label">{{label}}</h3>
+<h3 class="sort-bar-label">{{ label }}</h3>
 <div class="sort-bar-items flex flex-1 items-center justify-between">
-  <button class="sort-bar-item flex-1 flex items-center justify-center" *ngFor="let item of items" (click)="handleSortChange(item.value)">
-    <span class="sort-bar-item-label">{{item.label}}</span>
-    <span *ngIf="activeSort.key === item.value" [ngClass]="{'arrow-up': activeSort.order === 'desc','arrow-down': activeSort.order === 'asc'}" ></span>
+  <button
+    class="sort-bar-item flex-1 flex items-center justify-center"
+    *ngFor="let item of items"
+    (click)="handleSortChange(item.value)"
+  >
+    <span class="sort-bar-item-label">{{ item.label }}</span>
+    <span
+      *ngIf="activeSort.key === item.value"
+      [ngClass]="{
+        'arrow-up': activeSort.order === 'asc',
+        'arrow-down': activeSort.order === 'desc'
+      }"
+    ></span>
   </button>
 </div>
