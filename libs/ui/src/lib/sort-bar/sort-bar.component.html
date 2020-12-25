@@ -1,13 +1,21 @@
-<h3 class="sort-bar-label">{{ label }}</h3>
-<div class="sort-bar-items flex flex-1 items-center justify-between">
+<h3 class="sort-bar-label" [attr.data-test-id]="'sortBar.label' | testId">
+  {{ label }}
+</h3>
+<div
+  class="sort-bar-items flex flex-1 items-center justify-between"
+  [attr.data-test-id]="'sortBar.items' | testId"
+>
   <button
     class="sort-bar-item flex-1 flex items-center justify-center"
     *ngFor="let item of items"
     (click)="handleSortChange(item.value)"
+    [attr.data-test-id]="'sortBar.item' | testId: item.value"
   >
     <span class="sort-bar-item-label">{{ item.label }}</span>
     <span
       *ngIf="activeSort.key === item.value"
+      [attr.data-test-id]="'sortBar.order' | testId: item.value"
+      [attr.data-order]="activeSort.order"
       [ngClass]="{
         'arrow-up': activeSort.order === 'asc',
         'arrow-down': activeSort.order === 'desc'

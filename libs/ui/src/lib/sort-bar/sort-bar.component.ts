@@ -32,9 +32,15 @@ export class SortBarComponent {
 
   handleSortChange(key: string) {
     if (this.activeSort.key === key) {
-      this.activeSort.order = this.activeSort.order === 'asc' ? 'desc' : 'asc';
+      this.activeSort = {
+        ...this.activeSort,
+        order: this.activeSort.order === 'asc' ? 'desc' : 'asc',
+      };
     }
-    this.activeSort.key = key;
+    this.activeSort = {
+      ...this.activeSort,
+      key,
+    };
     this.sortChange.emit(this.activeSort);
   }
 }

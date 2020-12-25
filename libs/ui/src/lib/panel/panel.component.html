@@ -1,8 +1,17 @@
 <div class="header flex items-center">
-  <span class="icon" style="--panel-icon:url({{ icon }})"></span>
-  <h3 class="title flex-1">{{ title }}</h3>
+  <span
+    class="icon"
+    style="--panel-icon:url({{ icon }})"
+    [attr.data-icon]="icon"
+    [attr.data-test-id]="'panel.icon' | testId"
+  ></span>
+  <h3 class="title flex-1" [attr.data-test-id]="'panel.title' | testId">
+    {{ title }}
+  </h3>
 </div>
-<div class="body flex-1 overflow-auto">
-  <ng-container *ngIf="!loading"> <ng-content></ng-content> </ng-container>
-  <p *ngIf="loading">Loading...</p>
+<div
+  class="body flex-1 overflow-auto"
+  [attr.data-test-id]="'panel.content' | testId"
+>
+  <ng-content></ng-content>
 </div>

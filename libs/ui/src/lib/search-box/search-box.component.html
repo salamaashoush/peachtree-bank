@@ -1,7 +1,13 @@
 <input
+  [attr.data-test-id]="'searchBox.input' | testId"
   type="text"
-  id="search-box"
   placeholder="Search by typing"
   [formControl]="searchControl"
 />
-<button class="clear" *ngIf="searchControl.value">x</button>
+<button
+  class="clear"
+  *ngIf="searchControl.value"
+  [attr.data-test-id]="'searchBox.clear' | testId"
+>
+  x
+</button>

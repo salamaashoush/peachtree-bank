@@ -5,6 +5,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { PanelComponent } from './panel/panel.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SortBarComponent } from './sort-bar/sort-bar.component';
+import { TestIdPipe } from './test-id.pipe';
 import { TransactionItemComponent } from './transaction-item/transaction-item.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 
@@ -17,6 +18,7 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
     PanelComponent,
     TransferFormComponent,
     LoaderComponent,
+    TestIdPipe,
   ],
   exports: [
     SortBarComponent,
@@ -25,6 +27,7 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
     PanelComponent,
     LoaderComponent,
     TransferFormComponent,
+    TestIdPipe,
   ],
 })
 export class UiModule {}

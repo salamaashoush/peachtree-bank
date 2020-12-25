@@ -9,5 +9,4 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class PanelComponent {
   @Input() title = 'Untitled Panel';
   @Input() icon = '/assets/icons/arrows.png';
-  @Input() loading = false;
 }
