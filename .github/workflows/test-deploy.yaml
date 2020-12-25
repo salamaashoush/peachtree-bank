@@ -1,7 +1,7 @@
-name: Unit tests
+name: Test and deploy
 on: push
 jobs:
-  unit-tests:
+  test-deploy:
     name: Run unit tests
     runs-on: ubuntu-latest
 
@@ -10,14 +10,18 @@ jobs:
         node-version: [15.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build, and test
         run: |
           npm ci
-          npm test
+          npm test ui
+          npm run e2e
         env:
           CI: true
+      - name: deploy to netlify
+        if: ${{ success() }}
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/5fe575de69f90dde047cd64f

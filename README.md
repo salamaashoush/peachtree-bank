@@ -1,6 +1,11 @@
 # Backbase
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/644ed0b0-6369-49cb-a486-faf18866461e/deploy-status)](https://app.netlify.com/sites/festive-austin-a50ca8/deploys)
+[![Test and deploy](https://github.com/salamaashoush/peachtree-bank/workflows/Test%20and%20deploy/badge.svg)](https://github.com/salamaashoush/peachtree-bank/actions)
+
 This project was generated using [Nx](https://nx.dev).
+
+Live app [https://festive-austin-a50ca8.netlify.app/](https://festive-austin-a50ca8.netlify.app/).
 
 ## Architure overview
 

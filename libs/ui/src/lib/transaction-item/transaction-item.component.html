@@ -1,9 +1,9 @@
 <div class="category"></div>
 <div
   class="content w-full flex justify-start items-center flex-1"
-  style="--beneficiary-logo:url({{ transaction.beneficiaryLogo }})"
+  style="--beneficiary-logo:url({{ transaction?.beneficiaryLogo }})"
 >
-  <p [title]="transaction.fullDate" class="date">
+  <p [title]="transaction?.fullDate" class="date">
     {{ transaction?.dateFormatted }}
   </p>
   <div class="logo"></div>

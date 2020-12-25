@@ -1,4 +1,4 @@
-<form [formGroup]="transferForm">
+<form *ngIf="transferForm" [formGroup]="transferForm">
   <div class="form-control">
     <label for="fromAccount">From Account</label>
     <input type="text" formControlName="fromAccount" id="fromAccount" />
