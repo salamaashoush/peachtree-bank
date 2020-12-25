@@ -62,6 +62,7 @@ export class TransferFormComponent implements OnInit, OnChanges {
   handleTransfer() {
     this.transfer.emit(this.transferForm.value);
     this.transferForm.enable();
+    this.transferForm.get('toAccount').disable();
     this.submitted = false;
     this.transferForm.reset({ fromAccount: accountToString(this.account) });
   }
