@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import {
   AccountDataService,
   IOrderBy,
@@ -46,10 +47,7 @@ export class AppComponent implements OnInit {
     this.transactionService.updateSearch(search);
   }
 
-  handleTransferFormSubmit(data: ITransferFormData) {
-    if (!this.accountService.isValidTransfer(data.amount)) {
-      alert(`You don't have enough balance in you account`);
-    }
+  handleTransfer(data: ITransferFormData) {
     this.merchantService
       .getByName(data.toAccount)
       .pipe(first())
@@ -58,4 +56,11 @@ export class AppComponent implements OnInit {
         this.accountService.transfer(data.amount, merchantData);
       });
   }
+
+  amountValidatorFn = (control: AbstractControl) => {
+    const isValid = this.accountService.isValidTransfer(control.value);
+    return !isValid
+      ? { notEnoughBalance: `You don't have enough balance in your account` }
+      : null;
+  };
 }

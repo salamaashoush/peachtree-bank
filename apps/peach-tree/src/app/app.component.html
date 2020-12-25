@@ -1,5 +1,5 @@
 <header class="w-full flex items-center">
-  <img src="/assets/logo.jpg" alt="peach tree logo" class="logo w-1/4" />
+  <img src="/assets/logo.jpg" alt="peach tree logo" class="logo" />
 </header>
 <main class="w-full h-full flex items-start justify-center">
   <div class="container flex justify-start">
@@ -15,7 +15,8 @@
         <backbase-transfer-form
           [merchantNames]="merchantNames$ | async"
           [account]="accountService.account$ | async"
-          (formSubmit)="handleTransferFormSubmit($event)"
+          (transfer)="handleTransfer($event)"
+          [amountValidator]="amountValidatorFn"
         ></backbase-transfer-form>
       </ng-template>
     </backbase-panel>

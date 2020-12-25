@@ -1,4 +1,8 @@
-<form *ngIf="transferForm" [formGroup]="transferForm">
+<form
+  *ngIf="transferForm"
+  [formGroup]="transferForm"
+  [ngClass]="{ preview: submitted }"
+>
   <div class="form-control">
     <label for="fromAccount">From Account</label>
     <input type="text" formControlName="fromAccount" id="fromAccount" />
@@ -28,17 +32,23 @@
       />
     </div>
   </div>
-
+  <div
+    *ngIf="transferForm.getError('notEnoughBalance', 'amount') as error"
+    class="error"
+  >
+    {{ error }}
+  </div>
   <datalist id="account-list">
     <option *ngFor="let account of merchantNames" [value]="account"></option>
   </datalist>
   <div class="w-full flex items-center justify-end">
     <button
-      type="submit"
       [disabled]="!transferForm.valid"
-      (click)="handleFormSubmit()"
+      (click)="handleSubmit()"
+      *ngIf="!submitted"
     >
       Submit
     </button>
+    <button *ngIf="submitted" (click)="handleTransfer()">Transfer</button>
   </div>
 </form>

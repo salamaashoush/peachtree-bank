@@ -7,7 +7,12 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { IAccount } from '@backbase/api-client';
 import { accountToString, currencyCodeToSymbol } from '@backbase/data';
 import { ITransferFormData } from '../types';
@@ -20,9 +25,11 @@ import { ITransferFormData } from '../types';
 })
 export class TransferFormComponent implements OnInit, OnChanges {
   public transferForm: FormGroup;
+  public submitted = false;
+  @Input() amountValidator: ValidatorFn;
   @Input() merchantNames: string[] = [];
   @Input() account: IAccount;
-  @Output() formSubmit = new EventEmitter<ITransferFormData>(true);
+  @Output() transfer = new EventEmitter<ITransferFormData>(true);
   public currencySymbol: string;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -40,12 +47,22 @@ export class TransferFormComponent implements OnInit, OnChanges {
     this.transferForm = this.formBuilder.group({
       toAccount: ['', Validators.required],
       fromAccount: [{ value: accountToString(this.account), disabled: true }],
-      amount: ['0.00', [Validators.required, Validators.min(0.01)]],
+      amount: [
+        '0.00',
+        [Validators.required, Validators.min(0.01), this.amountValidator],
+      ],
     });
   }
 
-  handleFormSubmit() {
-    this.formSubmit.emit(this.transferForm.value);
-    this.transferForm.reset();
+  handleSubmit() {
+    this.submitted = true;
+    this.transferForm.disable();
+  }
+
+  handleTransfer() {
+    this.transfer.emit(this.transferForm.value);
+    this.transferForm.enable();
+    this.submitted = false;
+    this.transferForm.reset({ fromAccount: accountToString(this.account) });
   }
 }

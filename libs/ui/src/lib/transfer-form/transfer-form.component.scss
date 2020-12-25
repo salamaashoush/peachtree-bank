@@ -39,9 +39,19 @@ button {
   border: none;
   font-weight: 400;
   width: 75%;
-  margin-top: 48px;
+  margin-top: 20px;
 
   &:disabled {
     background: var(--palette-border);
   }
+}
+
+.preview {
+  .form-control input {
+    border: none;
+  }
+}
+
+.error {
+  color: red;
 }
