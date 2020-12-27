@@ -5,7 +5,12 @@
 >
   <div class="form-control">
     <label for="fromAccount">From Account</label>
-    <input type="text" formControlName="fromAccount" id="fromAccount" />
+    <input
+      type="text"
+      formControlName="fromAccount"
+      id="fromAccount"
+      [attr.data-test-id]="'transferForm.fromAccount' | testId"
+    />
   </div>
 
   <div class="form-control">
@@ -16,6 +21,7 @@
       formControlName="toAccount"
       id="toAccount"
       list="account-list"
+      [attr.data-test-id]="'transferForm.toAccount' | testId"
     />
   </div>
 
@@ -29,12 +35,14 @@
         type="number"
         formControlName="amount"
         id="amount"
+        [attr.data-test-id]="'transferForm.amount' | testId"
       />
     </div>
   </div>
   <div
     *ngIf="transferForm.getError('notEnoughBalance', 'amount') as error"
     class="error"
+    [attr.data-test-id]="'transferForm.error' | testId"
   >
     {{ error }}
   </div>
@@ -46,9 +54,16 @@
       [disabled]="!transferForm.valid"
       (click)="handleSubmit()"
       *ngIf="!submitted"
+      [attr.data-test-id]="'transferForm.submit' | testId"
     >
       Submit
     </button>
-    <button *ngIf="submitted" (click)="handleTransfer()">Transfer</button>
+    <button
+      *ngIf="submitted"
+      (click)="handleTransfer()"
+      [attr.data-test-id]="'transferForm.transfer' | testId"
+    >
+      Transfer
+    </button>
   </div>
 </form>

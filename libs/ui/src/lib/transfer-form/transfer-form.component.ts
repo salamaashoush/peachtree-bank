@@ -1,5 +1,7 @@
+import { getCurrencySymbol } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -14,7 +16,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IAccount } from '@backbase/api-client';
-import { accountToString, currencyCodeToSymbol } from '@backbase/data';
+import { accountToString } from '@backbase/data';
 import { ITransferFormData } from '../types';
 
 @Component({
@@ -32,7 +34,10 @@ export class TransferFormComponent implements OnInit, OnChanges {
   @Output() transfer = new EventEmitter<ITransferFormData>(true);
   public currencySymbol: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnChanges(): void {
     if (this.transferForm) {
@@ -43,7 +48,10 @@ export class TransferFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.currencySymbol = currencyCodeToSymbol(this.account.currencyCode);
+    this.currencySymbol = getCurrencySymbol(
+      this.account.currencyCode,
+      'narrow'
+    );
     this.transferForm = this.formBuilder.group({
       toAccount: ['', Validators.required],
       fromAccount: [{ value: accountToString(this.account), disabled: true }],

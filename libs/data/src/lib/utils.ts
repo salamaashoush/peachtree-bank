@@ -1,21 +1,5 @@
-import { CurrencyCode, IAccount } from '@backbase/api-client';
-
-/**
- * convert currency code `EUR` to currency symbol using Intl api
- *
- * @export
- * @param {CurrencyCode} code
- * @returns {string}
- */
-export function currencyCodeToSymbol(code: CurrencyCode): string {
-  const symbol = new Intl.NumberFormat('en', {
-    style: 'currency',
-    currency: code,
-  })
-    .formatToParts(1)
-    .find((x) => x.type === 'currency');
-  return symbol?.value ?? '$';
-}
+import { formatCurrency, getCurrencySymbol } from '@angular/common';
+import { IAccount } from '@backbase/api-client';
 
 /**
  * get user locale
@@ -55,7 +39,9 @@ export function kebabCase(str: string): string {
  * @returns {string}
  */
 export function accountToString(account: IAccount): string {
-  return `${account?.name}(${account?.number}) - ${currencyCodeToSymbol(
-    account?.currencyCode ?? 'EUR'
-  )}${account?.currentBalance.toFixed(2)}`;
+  return `${account?.name}(${account?.number}) - ${formatCurrency(
+    account?.currentBalance,
+    getUserLocale('en-US'),
+    getCurrencySymbol(account?.currencyCode ?? 'EUR', 'narrow')
+  )}`;
 }

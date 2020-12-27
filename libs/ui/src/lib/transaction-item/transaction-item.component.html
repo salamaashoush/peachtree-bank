@@ -1,18 +1,34 @@
-<div class="category"></div>
+<div
+  class="category"
+  aria-label="category color"
+  [attr.data-category]="transaction?.categoryCode"
+  [attr.data-test-id]="'transactionItem.category' | testId"
+></div>
 <div class="content w-full flex justify-start items-center flex-1">
-  <p [title]="transaction?.date | date: 'full'" class="date">
+  <p
+    [title]="transaction?.date | date: 'full'"
+    class="date"
+    [attr.data-test-id]="'transactionItem.date' | testId"
+  >
     {{ transaction?.date | date: 'MMM d' }}
   </p>
   <img
     [src]="transaction?.beneficiaryLogo"
+    [attr.data-test-id]="'transactionItem.beneficiaryLogo' | testId"
     alt="beneficiary logo"
     class="logo"
   />
   <div class="flex flex-col flex-1">
-    <strong>{{ transaction?.beneficiary }}</strong>
-    <p>{{ transaction?.type }}</p>
+    <strong [attr.data-test-id]="'transactionItem.beneficiary' | testId">{{
+      transaction?.beneficiary
+    }}</strong>
+    <p [attr.data-test-id]="'transactionItem.type' | testId">
+      {{ transaction?.type }}
+    </p>
   </div>
-  <strong class="text-align-right"
+  <strong
+    class="text-align-right"
+    [attr.data-test-id]="'transactionItem.amount' | testId"
     >{{ transaction.indicator
     }}{{ transaction?.amount | currency: transaction.currencyCode }}</strong
   >

@@ -1,5 +1,6 @@
+import { formatCurrency, formatDate, getCurrencySymbol } from '@angular/common';
 import { ITransactionItem } from '@backbase/api-client';
-import { kebabCase } from '../utils';
+import { getUserLocale, kebabCase } from '../utils';
 
 export class Transaction {
   public categoryCode: string;
@@ -11,10 +12,10 @@ export class Transaction {
   public date: number;
   public dateFormatted: string;
   public beneficiaryLogo: string;
-  public fullDate: string;
   public currencyCode: string;
 
   constructor(private apiData: ITransactionItem) {
+    const userLocale = getUserLocale('en-US');
     this.categoryCode = this.apiData.categoryCode;
     this.type = this.apiData.transaction.type;
     const amount = this.apiData.transaction?.amountCurrency?.amount;
@@ -23,7 +24,13 @@ export class Transaction {
     this.beneficiary = this.apiData?.merchant?.name;
     this.indicator =
       this.apiData.transaction?.creditDebitIndicator === 'CRDT' ? '+' : '-';
+    this.amountFormatted = formatCurrency(
+      this.amount,
+      userLocale,
+      getCurrencySymbol(this.currencyCode, 'narrow')
+    );
     this.date = new Date(this.apiData.dates?.valueDate).getTime();
+    this.dateFormatted = formatDate(this.date, 'MMM d', userLocale);
     this.beneficiaryLogo = `/assets/icons/${kebabCase(this.beneficiary)}.png`;
   }
 

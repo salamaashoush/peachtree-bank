@@ -17,4 +17,20 @@ export const TEST_IDS = {
     item: (selector: string) => `sort-bar-${selector}-button`,
     order: (selector: string) => `sort-bar-${selector}-order`,
   },
+  transactionItem: {
+    category: 'transaction-item-category',
+    date: 'transaction-item-date',
+    beneficiary: 'transaction-item-beneficiary',
+    beneficiaryLogo: 'transaction-item-beneficiary-logo',
+    amount: 'transaction-item-amount',
+    type: 'transaction-item-type',
+  },
+  transferForm: {
+    toAccount: 'transfer-form-to-account',
+    fromAccount: 'transfer-form-from-account',
+    amount: 'transfer-form-amount',
+    error: 'transfer-form-error',
+    transfer: 'transfer-form-transfer',
+    submit: 'transfer-form-submit',
+  },
 };
