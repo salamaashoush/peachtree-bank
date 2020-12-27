@@ -22,31 +22,4 @@ export class TransactionApiService {
       TransactionApCalls.All
     );
   }
-
-  /**
-   * create default transaction api object
-   *
-   * @returns {ITransactionItem}
-   * @memberof TransactionApiService
-   */
-  getDefaultTransactionItem(): ITransactionItem {
-    return {
-      categoryCode: '#1180aa',
-      dates: {
-        valueDate: Date.now(),
-      },
-      transaction: {
-        amountCurrency: {
-          amount: 50,
-          currencyCode: 'EUR',
-        },
-        type: 'Transaction',
-        creditDebitIndicator: 'DBIT',
-      },
-      merchant: {
-        name: 'Jon doe',
-        accountNumber: 'SI64397745065188826',
-      },
-    };
-  }
 }

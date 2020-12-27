@@ -1,15 +1,17 @@
-
+import { getDefaultTransactionItem } from '@backbase/api-client';
+import { Transaction } from '@backbase/data';
+import { TestIdPipe } from '../test-id.pipe';
 import { TransactionItemComponent } from './transaction-item.component';
 
 export default {
-  title: 'TransactionItemComponent'
-}
+  title: 'TransactionItemComponent',
+};
 
 export const primary = () => ({
   moduleMetadata: {
-    imports: []
+    imports: [],
+    declarations: [TestIdPipe],
   },
   component: TransactionItemComponent,
-  props: {
-  }
-})
+  props: { transaction: new Transaction(getDefaultTransactionItem()) },
+});

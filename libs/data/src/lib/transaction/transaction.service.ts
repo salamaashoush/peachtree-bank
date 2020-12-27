@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IMerchant, TransactionApiService } from '@backbase/api-client';
+import {
+  getDefaultTransactionItem,
+  IMerchant,
+  TransactionApiService,
+} from '@backbase/api-client';
 import { merge, orderBy } from 'lodash-es';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { first, map, switchMap } from 'rxjs/operators';
@@ -124,7 +128,7 @@ export class TransactionDataService {
    * @memberof TransactionDataService
    */
   createTransaction(amount: number, merchant: Partial<IMerchant>): Transaction {
-    const defaultData = this.transactionApiService.getDefaultTransactionItem();
+    const defaultData = getDefaultTransactionItem();
     const transactionData = merge(defaultData, {
       transaction: {
         amountCurrency: {

@@ -49,7 +49,11 @@ export class TransferFormComponent implements OnInit, OnChanges {
       fromAccount: [{ value: accountToString(this.account), disabled: true }],
       amount: [
         '0.00',
-        [Validators.required, Validators.min(0.01), this.amountValidator],
+        [
+          Validators.required,
+          Validators.min(0.01),
+          this.amountValidator ?? (() => null),
+        ],
       ],
     });
   }
