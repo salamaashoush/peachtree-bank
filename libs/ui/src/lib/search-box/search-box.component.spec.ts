@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TestIdPipe } from '../test-id.pipe';
-import { getTestIdSelector, runOnPushChangeDetection } from '../test-utils';
+import { getElementByTestId, runOnPushChangeDetection } from '../test-utils';
 import { SearchBoxComponent } from './search-box.component';
 
 describe('SearchBoxComponent', () => {
@@ -25,9 +25,9 @@ describe('SearchBoxComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should emit on user input', async () => {
-    const element: HTMLElement = fixture.nativeElement;
-    const searchInput = element.querySelector<HTMLInputElement>(
-      getTestIdSelector('searchBox.input')
+    const searchInput = getElementByTestId<HTMLInputElement>(
+      fixture,
+      'searchBox.input'
     );
     spyOn(component.searchChange, 'emit');
     component.ngOnInit();
@@ -40,9 +40,9 @@ describe('SearchBoxComponent', () => {
   });
 
   it('should update form control on user input', async () => {
-    const element: HTMLElement = fixture.nativeElement;
-    const searchInput = element.querySelector<HTMLInputElement>(
-      getTestIdSelector('searchBox.input')
+    const searchInput = getElementByTestId<HTMLInputElement>(
+      fixture,
+      'searchBox.input'
     );
     component.ngOnInit();
     const value = 'h&m';

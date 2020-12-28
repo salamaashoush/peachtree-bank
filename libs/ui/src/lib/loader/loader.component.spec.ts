@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestIdPipe } from '../test-id.pipe';
-import { getTestIdSelector, runOnPushChangeDetection } from '../test-utils';
+import { getElementByTestId, runOnPushChangeDetection } from '../test-utils';
 import { LoaderComponent } from './loader.component';
 describe('LoaderComponent', () => {
   let component: LoaderComponent;
@@ -23,10 +23,7 @@ describe('LoaderComponent', () => {
   });
 
   it('should show default message', () => {
-    const loaderElement: HTMLElement = fixture.nativeElement;
-    const messageElement = loaderElement.querySelector(
-      getTestIdSelector('loader.message')
-    );
+    const messageElement = getElementByTestId(fixture, 'loader.message');
     expect(messageElement.textContent).toBe('Loading...');
   });
 
@@ -34,10 +31,7 @@ describe('LoaderComponent', () => {
     const customMessage = 'Custom message';
     component.message = customMessage;
     await runOnPushChangeDetection(fixture);
-    const loaderElement = fixture.nativeElement;
-    const messageElement = loaderElement.querySelector(
-      getTestIdSelector('loader.message')
-    );
+    const messageElement = getElementByTestId(fixture, 'loader.message');
     expect(messageElement.textContent).toBe(component.message);
   });
 });

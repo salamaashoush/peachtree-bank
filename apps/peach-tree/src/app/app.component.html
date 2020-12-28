@@ -1,5 +1,10 @@
 <header class="w-full flex items-center">
-  <img src="/assets/logo.jpg" alt="peach tree logo" class="logo" />
+  <img
+    src="/assets/logo.jpg"
+    alt="peach tree logo"
+    class="logo"
+    [attr.data-test-id]="'app.header' | testId"
+  />
 </header>
 <main class="w-full h-full flex items-start justify-center">
   <div class="container flex justify-start">
@@ -13,6 +18,7 @@
       ></backbase-loader>
       <ng-template #transferForm>
         <backbase-transfer-form
+          [attr.data-test-id]="'app.transferForm' | testId"
           [merchantNames]="merchantNames$ | async"
           [account]="accountService.account$ | async"
           (transfer)="handleTransfer($event)"
@@ -35,6 +41,7 @@
             <backbase-search-box
               class="w-1/2"
               (searchChange)="handleSearch($event)"
+              ()
             ></backbase-search-box>
             <backbase-sort-bar
               class="w-1/2"
@@ -44,12 +51,16 @@
           </div>
           <div
             class="flex flex-col justify-start items-center transactions-list overflow-auto"
+            [attr.data-test-id]="'app.recentTransactions' | testId"
           >
             <backbase-transaction-item
               *ngFor="
                 let transaction of transactionService.transaction$ | async
               "
               [transaction]="transaction"
+              [attr.data-test-id]="
+                'app.transactionItem' | testId: transaction.id
+              "
               style="--category-color:{{ transaction.categoryCode }}"
             ></backbase-transaction-item>
           </div>

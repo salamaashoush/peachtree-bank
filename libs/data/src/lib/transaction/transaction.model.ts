@@ -3,6 +3,7 @@ import { ITransactionItem } from '@backbase/api-client';
 import { getUserLocale, kebabCase } from '../utils';
 
 export class Transaction {
+  public id: string;
   public categoryCode: string;
   public type: string;
   public amount: number;
@@ -22,6 +23,9 @@ export class Transaction {
     this.amount = typeof amount === 'string' ? parseFloat(amount) : amount;
     this.currencyCode = this.apiData.transaction?.amountCurrency?.currencyCode;
     this.beneficiary = this.apiData?.merchant?.name;
+    this.id = `${kebabCase(this.beneficiary)}-${this.amount}-${kebabCase(
+      this.type
+    )}`;
     this.indicator =
       this.apiData.transaction?.creditDebitIndicator === 'CRDT' ? '+' : '-';
     this.amountFormatted = formatCurrency(

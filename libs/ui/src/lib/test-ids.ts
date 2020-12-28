@@ -33,4 +33,10 @@ export const TEST_IDS = {
     transfer: 'transfer-form-transfer',
     submit: 'transfer-form-submit',
   },
+  app: {
+    transferForm: 'app-transfer-form',
+    header: 'app-header',
+    transactionItem: (selector: string) => selector,
+    recentTransactions: 'app-recent-transaction',
+  },
 };

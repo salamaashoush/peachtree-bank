@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IOrderBy } from '@backbase/data';
 import { TestIdPipe } from '../test-id.pipe';
-import { getTestIdSelector, runOnPushChangeDetection } from '../test-utils';
+import { getElementByTestId, runOnPushChangeDetection } from '../test-utils';
 import { SortBarComponent } from './sort-bar.component';
 
 describe('SortBarComponent', () => {
@@ -40,19 +40,13 @@ describe('SortBarComponent', () => {
     const label = 'Order by';
     component.label = label;
     await runOnPushChangeDetection(fixture);
-    const element: HTMLElement = fixture.nativeElement;
-    const labelElement = element.querySelector(
-      getTestIdSelector('sortBar.label')
-    );
+    const labelElement = getElementByTestId(fixture, 'sortBar.label');
     expect(labelElement.textContent).toContain(label);
   });
 
   it('should render correct items', async () => {
     await runOnPushChangeDetection(fixture);
-    const element: HTMLElement = fixture.nativeElement;
-    const itemsElement = element.querySelector(
-      getTestIdSelector('sortBar.items')
-    );
+    const itemsElement = getElementByTestId(fixture, 'sortBar.items');
     expect(itemsElement.childElementCount).toBe(3);
     expect(itemsElement.firstElementChild.textContent).toContain(
       items[0].label
@@ -62,25 +56,30 @@ describe('SortBarComponent', () => {
   it('should render sort order correctly', async () => {
     component.activeSort = activeSort;
     await runOnPushChangeDetection(fixture);
-    const element: HTMLElement = fixture.nativeElement;
-    const ageItemElement = element.querySelector(
-      getTestIdSelector('sortBar.item', activeSort.key)
+    const ageItemElement = getElementByTestId(
+      fixture,
+      'sortBar.item',
+      activeSort.key
     );
-    const ageItemOrderElement = element.querySelector<HTMLElement>(
-      getTestIdSelector('sortBar.order', activeSort.key)
+    const ageItemOrderElement = getElementByTestId(
+      fixture,
+      'sortBar.order',
+      activeSort.key
     );
     expect(ageItemElement.textContent).toBe('Age');
     expect(ageItemOrderElement.dataset.order).toBe(activeSort.order);
   });
 
   it('should emit the correct clicked item', async () => {
-    const element: HTMLElement = fixture.nativeElement;
     spyOn(component, 'handleSortChange');
     spyOn(component.sortChange, 'emit');
 
-    const salaryItemElement = element.querySelector<HTMLButtonElement>(
-      getTestIdSelector('sortBar.item', 'salary')
+    const salaryItemElement = getElementByTestId(
+      fixture,
+      'sortBar.item',
+      'salary'
     );
+
     expect(salaryItemElement).toBeTruthy();
     salaryItemElement.click();
     await runOnPushChangeDetection(fixture);
