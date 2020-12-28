@@ -4,11 +4,12 @@
   placeholder="Search by typing"
   [formControl]="searchControl"
 />
+
 <button
   class="clear"
-  *ngIf="searchControl.value"
+  *ngIf="searchControl?.value"
+  (click)="searchControl.reset()"
   [attr.data-test-id]="'searchBox.clear' | testId"
-  (click)="handleClear()"
 >
   x
 </button>

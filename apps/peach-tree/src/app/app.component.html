@@ -41,7 +41,6 @@
             <backbase-search-box
               class="w-1/2"
               (searchChange)="handleSearch($event)"
-              ()
             ></backbase-search-box>
             <backbase-sort-bar
               class="w-1/2"
@@ -58,6 +57,7 @@
                 let transaction of transactionService.transaction$ | async
               "
               [transaction]="transaction"
+              [attr.data-date]="transaction.date"
               [attr.data-test-id]="
                 'app.transactionItem' | testId: transaction.id
               "

@@ -35,7 +35,6 @@ export class AccountDataService {
     return this.accountApiService.getAccount().pipe(
       first(),
       switchMap((res) => {
-        console.log('Here ', res);
         this.accountSubject.next(res.data);
         return this.account$;
       })

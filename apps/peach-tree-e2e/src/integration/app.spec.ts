@@ -1,5 +1,8 @@
 describe('peach-tree', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => {
+    cy.mockApi();
+    cy.visit('/');
+  });
 
   it('should display list of transactions and transfer form', () => {
     cy.contains('Transfer');
